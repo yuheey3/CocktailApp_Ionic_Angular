@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Category } from './home.model';
+import { HomeService } from './home.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,6 +10,26 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  categories: Category;
+
+  constructor(private homeService: HomeService) { }
+
+
+
+  ngOnInit() {
+
+    this.homeService.getCategories().subscribe(
+      (res) => {
+        this.categories = res;
+
+      });
+
+
+  }
+
 
 }
+
+
+
+
