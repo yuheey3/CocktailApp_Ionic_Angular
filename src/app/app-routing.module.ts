@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'detail',
+    loadChildren: () => import('./detail/detail.module').then( m => m.DetailPageModule)
+  },
+  {
+    path: 'search-category',
+    loadChildren: () => import('./search-category/search-category.module').then( m => m.SearchCategoryPageModule)
+  },
 ];
 
 @NgModule({
@@ -20,3 +28,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
+
+
