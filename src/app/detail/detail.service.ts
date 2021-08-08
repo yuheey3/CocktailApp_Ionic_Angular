@@ -10,6 +10,8 @@ import { Detail} from './detail.model';
 export class DetailService {
   url = '';
   details: Detail;
+  strDrinkS: string;
+
  
   constructor(private http: HttpClient) { }
 
@@ -19,6 +21,8 @@ export class DetailService {
 
   getDetails(n:string) {
     this.url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + n;
+
+    
    // this.url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=afternoon'
     this.details = {
 
@@ -28,6 +32,7 @@ export class DetailService {
       strInstructions :  [''],
       strDrinkThumb :  [''],
     }
+    
     return this.http.get(this.url).
       pipe(
         map(resultData => {
@@ -40,11 +45,18 @@ export class DetailService {
             this.details.strDrinkThumb.push(element["strDrinkThumb"]); 
                       
           });
+     
+          //this.strDrinkS = this.details.strDrink.toString();
+          //this.strDrinkS.substring(1,this.strDrinkS.length);
+   
+
 
           return this.details;
         })
+
       )
   }
+  
 }
 
 

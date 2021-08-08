@@ -15,7 +15,12 @@ export class DetailPage implements OnInit {
   cocktailName : CocktailName;
   cacktailNameStr: string
   details: Detail;
-  strDrink : string;
+  strDrinkS : string;
+  strTagsS: string;
+  strCategoryS : string;
+  strInstructionsS : string;
+  strDrinkThumbS: string;
+
   constructor(private activatedRoute: ActivatedRoute,private router: Router, private homesService: HomeService, private detailService: DetailService ) { }
 
   ngOnInit() {
@@ -29,7 +34,7 @@ export class DetailPage implements OnInit {
       }
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
-    //this.strDrink = 'mmmm';
+    //this.strDrinkS = 'mmmm';
       this.cocktailName = this.homesService.getCocktailName();
       this.cacktailNameStr = this.cocktailName.name;
       console.log(this.cocktailName.name);
@@ -44,11 +49,22 @@ export class DetailPage implements OnInit {
       (res) => {
         this.details = res;
         
-       // this.strDrink = this.details.strDrink;
-        //this.strDrink = this.details.strDrink.toString();
+        //To remove ','
+        this.strDrinkS = this.details.strDrink.toString();
+        this.strDrinkS = this.strDrinkS.replace(/,/g, "")
+        this.strTagsS = this.details.strTags.toString();
+        this.strTagsS = this.strTagsS.replace(/,/g, "")
+        this.strCategoryS = this.details.strCategory.toString();
+        this.strCategoryS = this.strCategoryS.replace(/,/g, "")
+        this.strInstructionsS = this.details.strInstructions.toString();
+        this.strInstructionsS = this.strInstructionsS.replace(/,/g, "")
+        this.strDrinkThumbS = this.details.strDrinkThumb.toString();
+        this.strDrinkThumbS = this.strDrinkThumbS.replace(/,/g, "")
       });
 
     })
+   
+   
 
     
 
