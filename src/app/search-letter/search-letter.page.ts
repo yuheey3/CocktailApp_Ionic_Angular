@@ -37,9 +37,8 @@ export class SearchLetterPage implements OnInit {
       }
 
 
-       // on item click update the routing helper and navigate to details page
+    // on item click navigate to details page
     onItemClick(name: string){
-    //this.service.changeRoutingHelper(false);
     this.cocktailName.name = name;
     this.homeService.pushCocktailName(this.cocktailName);
     this.router.navigate(['detail']);

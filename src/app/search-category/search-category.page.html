@@ -7,7 +7,7 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let category of categories.name">
+    <ion-item *ngFor="let category of categories.name" (click)="onItemClick(category)">
       <ion-label>
         {{category}}
       </ion-label>

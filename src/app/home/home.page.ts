@@ -52,7 +52,7 @@ export class HomePage {
 
 
  
-  
+   this.input = "";
    this.router.navigate(['detail']);
    
   }
@@ -64,7 +64,7 @@ searchByFirstLetter()
 {
   this.letterValue.letter = this.letter;
   this.homeService.pushLetterByUser(this.letterValue);
-  
+  this.letter = "";
   this.router.navigate(['search-letter']);
 }
 }

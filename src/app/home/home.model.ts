@@ -13,3 +13,10 @@ export interface LetterByUser{
 export interface CocktailName{
     name: string;
 }
+export interface SelectedCategory{
+    name: string;
+}
+export interface SelectedCategoryList{
+    name: [string];
+  //  img: [string];
+}
