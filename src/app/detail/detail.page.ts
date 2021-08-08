@@ -19,8 +19,17 @@ export class DetailPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,private router: Router, private homesService: HomeService, private detailService: DetailService ) { }
 
   ngOnInit() {
+    this.details = {
+      strDrink : [''],
+      strTags :  [''],
+      strCategory :  [''],
+      strInstructions :  [''],
+      strDrinkThumb :  [''],
+   
+      }
+
     this.activatedRoute.paramMap.subscribe(paramMap => {
-    this.strDrink = 'mmmm';
+    //this.strDrink = 'mmmm';
       this.cocktailName = this.homesService.getCocktailName();
       this.cacktailNameStr = this.cocktailName.name;
       console.log(this.cocktailName.name);

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Category, CocktailName } from './home.model';
+import { Category, CocktailName, FirstLetter, LetterByUser } from './home.model';
 import { Observable } from 'rxjs';
-//import * as internal from 'stream';
+
 
 
 @Injectable({
@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 export class HomeService {
   url = '';
   categories: Category;
+  firstLetters: FirstLetter
+ 
 
 
 
@@ -30,6 +32,19 @@ export class HomeService {
   getCocktailName() {
     return this.cocktailName;
   }
+
+  private letterByUser: LetterByUser = {
+    letter: 'a',
+   }
+ 
+   pushLetterByUser(l: LetterByUser) {
+     this.letterByUser = l;
+   }
+ 
+   getLetterByUser() {
+     return this.letterByUser;
+   }
+
 
   getCategories() {
     this.url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
@@ -52,6 +67,33 @@ export class HomeService {
           });
           console.log(this.categories)
           return this.categories;
+
+
+        })
+      )
+  }
+
+  getFirstLetter(s: string) {
+    this.url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f='+ s;
+
+    this.firstLetters = {
+
+      name: [''],
+  
+
+    }
+    return this.http.get(this.url).
+      pipe(
+        map(resultData => {
+
+          // extract string cacktail name search by first letter
+          resultData["drinks"].forEach(element => {
+          
+            this.firstLetters.name.push(element["strDrink"]);
+          
+          });
+          console.log(this.firstLetters)
+          return this.firstLetters;
 
 
         })

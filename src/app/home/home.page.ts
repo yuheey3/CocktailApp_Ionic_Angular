@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Category, CocktailName } from './home.model';
+import { Category, CocktailName, LetterByUser } from './home.model';
 import { HomeService } from './home.service';
 import { Router } from '@angular/router';
 
@@ -12,11 +12,12 @@ import { Router } from '@angular/router';
 export class HomePage {
 
   categories: Category;
-  str :string;
   cocktailName: CocktailName;
   cocktailName2: CocktailName;
+  letterValue: LetterByUser;
   
   input:string;
+  letter: string;
 
   constructor(private homeService: HomeService, private router: Router) { }
 
@@ -25,6 +26,7 @@ export class HomePage {
   ngOnInit() {
   
  this.cocktailName = this.homeService.getCocktailName();
+ this.letterValue = this.homeService.getLetterByUser();
 
 
     this.homeService.getCategories().subscribe(
@@ -50,7 +52,7 @@ export class HomePage {
 
 
  
-   this.str = this.input
+  
    this.router.navigate(['detail']);
    
   }
@@ -58,7 +60,13 @@ export class HomePage {
 {
   this.router.navigate(['search-category']);
 }
-
+searchByFirstLetter()
+{
+  this.letterValue.letter = this.letter;
+  this.homeService.pushLetterByUser(this.letterValue);
+  
+  this.router.navigate(['search-letter']);
+}
 }
 
 
