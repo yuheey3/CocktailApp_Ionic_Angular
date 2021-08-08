@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Detail} from './detail.model';
+import { Detail } from './detail.model';
 
 
 @Injectable({
@@ -12,51 +12,41 @@ export class DetailService {
   details: Detail;
   strDrinkS: string;
 
- 
+
   constructor(private http: HttpClient) { }
 
 
-
-
-
-  getDetails(n:string) {
+  getDetails(n: string) {
     this.url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=' + n;
 
-    
-   // this.url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=afternoon'
     this.details = {
 
-      strDrink : [''],
-      strTags :  [''],
-      strCategory :  [''],
-      strInstructions :  [''],
-      strDrinkThumb :  [''],
+      strDrink: [''],
+      strTags: [''],
+      strCategory: [''],
+      strInstructions: [''],
+      strDrinkThumb: [''],
     }
-    
+
     return this.http.get(this.url).
       pipe(
         map(resultData => {
 
           resultData["drinks"].forEach(element => {
-            this.details.strDrink.push(element["strDrink"]); 
-            this.details.strTags.push(element["strTags"]); 
-            this.details.strCategory.push(element["strCategory"]); 
-            this.details.strInstructions.push(element["strInstructions"]); 
-            this.details.strDrinkThumb.push(element["strDrinkThumb"]); 
-                      
-          });
-     
-          //this.strDrinkS = this.details.strDrink.toString();
-          //this.strDrinkS.substring(1,this.strDrinkS.length);
-   
+            this.details.strDrink.push(element["strDrink"]);
+            this.details.strTags.push(element["strTags"]);
+            this.details.strCategory.push(element["strCategory"]);
+            this.details.strInstructions.push(element["strInstructions"]);
+            this.details.strDrinkThumb.push(element["strDrinkThumb"]);
 
+          });
 
           return this.details;
         })
 
       )
   }
-  
+
 }
 
 

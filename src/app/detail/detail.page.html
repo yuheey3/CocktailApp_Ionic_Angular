@@ -6,45 +6,42 @@
 
 <ion-content>
   <ion-grid>
-  <ion-row class="ion-align-items-center">
+    <ion-row class="ion-align-items-center">
 
-    <ion-col size-md="6" offset-md="3">
-              <ion-label class = "text">
-              {{strDrinkS}}
-              </ion-label>
-              </ion-col>
-              </ion-row>
-              <ion-row class="ion-align-items-center">
-                <ion-col size-md="6" offset-md="3">  
-                <ion-img src="{{strDrinkThumbS}}"></ion-img>  
-              </ion-col>
-           
-              </ion-row>
-              <ion-row class="ion-align-items-center">
-                
-                <ion-col size-md="6" offset-md="3">
-                  <ion-label class = "text2">
-                  Category: {{strCategoryS}}
-                  </ion-label>
-                  </ion-col>
-                </ion-row>
-                <ion-row class="ion-align-items-center">
-                  <ion-col size-md="6" offset-md="3">
-                    <ion-label class = "text2">
-                    Instructions: {{strInstructionsS}}
-                    </ion-label>
-                    </ion-col>
-                  </ion-row>
-                  <ion-row class="ion-align-items-center">
-                    <ion-col size-md="6" offset-md="3">
-                      <ion-button color="danger" (click)="addFavorite()">{{strButton}}</ion-button>
-               
-                    </ion-col>
-                    </ion-row>
-            
-      
-         
-   
+      <ion-col size-md="6" offset-md="3">
+        <ion-label class="text">
+          {{strDrinkS}}
+        </ion-label>
+        <ion-button (click)="goToMain()">Go to Main</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-md="6" offset-md="3">
+        <ion-img src="{{strDrinkThumbS}}"></ion-img>
+      </ion-col>
 
-</ion-grid>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+
+      <ion-col size-md="6" offset-md="3">
+        <ion-label class="text2">
+          Category: {{strCategoryS}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-md="6" offset-md="3">
+        <ion-label class="text2">
+          Instructions: {{strInstructionsS}}
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col size-md="6" offset-md="3">
+        <ion-button color="danger" (click)="addFavorite()">{{strButton}}</ion-button>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

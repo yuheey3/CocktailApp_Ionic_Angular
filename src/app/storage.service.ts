@@ -29,19 +29,19 @@ export class StorageService {
 
 
   // get all records from the storage
-  public getAll(){
-    var myFav: MyFavorite[] =[];
-    if (this._storage != null){
-    this._storage.forEach((value, key, index) => {
-      myFav.push(value as MyFavorite);
-    });
-  }
+  public getAll() {
+    var myFav: MyFavorite[] = [];
+    if (this._storage != null) {
+      this._storage.forEach((value, key, index) => {
+        myFav.push(value as MyFavorite);
+      });
+    }
     return myFav;
   }
 
 
   // remove a record from the storage
-  public async removeFavorite(fav: MyFavorite){
+  public async removeFavorite(fav: MyFavorite) {
     await this._storage.remove(fav.name);
   }
 }

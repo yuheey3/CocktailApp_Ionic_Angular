@@ -4,14 +4,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
-
   <ion-list>
     <ion-item *ngFor="let selectedname of selectedCategoryLists.name" (click)="onItemClick(selectedname)">
 
       <ion-label>
         {{selectedname}}
-      </ion-label> 
+      </ion-label>
     </ion-item>
   </ion-list>
 

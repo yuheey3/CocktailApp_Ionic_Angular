@@ -14,84 +14,78 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  cocktailName : CocktailName;
+  cocktailName: CocktailName;
   cacktailNameStr: string
   details: Detail;
-  strDrinkS : string;
+  strDrinkS: string;
   strTagsS: string;
-  strCategoryS : string;
-  strInstructionsS : string;
+  strCategoryS: string;
+  strInstructionsS: string;
   strDrinkThumbS: string;
-  strButton : string;
+  strButton: string;
 
 
-  constructor(private activatedRoute: ActivatedRoute,private alertController: AlertController,private router: Router, private storageService: StorageService, private homesService: HomeService, private detailService: DetailService ) { }
+  constructor(private activatedRoute: ActivatedRoute, private alertController: AlertController, private router: Router, private storageService: StorageService, private homesService: HomeService, private detailService: DetailService) { }
 
   ngOnInit() {
     this.details = {
-      strDrink : [''],
-      strTags :  [''],
-      strCategory :  [''],
-      strInstructions :  [''],
-      strDrinkThumb :  [''],
-   
-      }
+      strDrink: [''],
+      strTags: [''],
+      strCategory: [''],
+      strInstructions: [''],
+      strDrinkThumb: [''],
 
-
+    }
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
-   
+
       this.cocktailName = this.homesService.getCocktailName();
       this.cacktailNameStr = this.cocktailName.name;
       console.log(this.cocktailName.name);
 
+      this.detailService.getDetails(this.cacktailNameStr).subscribe(
+        (res) => {
+          this.details = res;
 
+          //To remove ','
+          this.strDrinkS = this.details.strDrink.toString();
+          this.strDrinkS = this.strDrinkS.replace(/,/g, "")
+          this.strTagsS = this.details.strTags.toString();
+          this.strTagsS = this.strTagsS.replace(/,/g, "")
+          this.strCategoryS = this.details.strCategory.toString();
+          this.strCategoryS = this.strCategoryS.replace(/,/g, "")
+          this.strInstructionsS = this.details.strInstructions.toString();
+          this.strInstructionsS = this.strInstructionsS.replace(/,/g, "")
+          this.strDrinkThumbS = this.details.strDrinkThumb.toString();
+          this.strDrinkThumbS = this.strDrinkThumbS.replace(/,/g, "")
 
-
-
-    
-          //this.detailService.getDetails('afternoon').subscribe(
-         this.detailService.getDetails(this.cacktailNameStr).subscribe(
-      (res) => {
-        this.details = res;
-        
-        //To remove ','
-        this.strDrinkS = this.details.strDrink.toString();
-        this.strDrinkS = this.strDrinkS.replace(/,/g, "")
-        this.strTagsS = this.details.strTags.toString();
-        this.strTagsS = this.strTagsS.replace(/,/g, "")
-        this.strCategoryS = this.details.strCategory.toString();
-        this.strCategoryS = this.strCategoryS.replace(/,/g, "")
-        this.strInstructionsS = this.details.strInstructions.toString();
-        this.strInstructionsS = this.strInstructionsS.replace(/,/g, "")
-        this.strDrinkThumbS = this.details.strDrinkThumb.toString();
-        this.strDrinkThumbS = this.strDrinkThumbS.replace(/,/g, "")
-
-        this.strButton= "Add to My Favorite";
-      });
+          this.strButton = "Add to My Favorite";
+        });
 
     })
-   
-   }
-  
-   addFavorite(){
-  
+
+  }
+  goToMain() {
+    this.router.navigate(['home']);
+  }
+  addFavorite() {
+
 
     this.alertController.create({
       header: 'Success',
-      message : 'Do you want to add this receipe?',
+      message: 'Do you want to add this receipe?',
       buttons: [{
-        text :'Add to my Favorite',
-        handler : ()=>{
+        text: 'Add to my Favorite',
+        handler: () => {
           this.storageService.addMyFavorite(this.strDrinkS, this.strDrinkS);
         }
-      },'Cancel']
+      }, 'Cancel']
 
     }).then(alert => {
       alert.present();
     })
-    
-   }
 
-  
+  }
+
+
 }

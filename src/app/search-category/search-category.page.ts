@@ -11,31 +11,45 @@ import { Category, SelectedCategory } from '../home/home.model';
 export class SearchCategoryPage implements OnInit {
   categories: Category;
   selectedCategory: SelectedCategory
-  constructor(private activatedRoute: ActivatedRoute,private router: Router, private homeService: HomeService) { }
+  //searchCategory: Category[] = [];
+  //searchCategoryOriginal: Category[] = [];
+
+  searchText: string;
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
+    this.searchText = "";
+
     this.categories = {
       name: [''],
-   
-      }
-      this.selectedCategory = {
-        name: '',
-     
-        }
+
+    }
+    this.selectedCategory = {
+      name: '',
+
+    }
+
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
-    this.homeService.getCategories().subscribe(
-      (res) => {
-        this.categories = res;
-      });
+      this.homeService.getCategories().subscribe(
+        (res) => {
+          this.categories = res;
         });
+    });
 
-      }
-  
-    // on item click navigate to category list page
-    onItemClick(name: string){
-      this.selectedCategory.name = name;
-      this.homeService.pushCateogryByUser(this.selectedCategory);
-      this.router.navigate(['category-list']);
-    }
-    }
+  }
+
+  // on item click navigate to category list page
+  onItemClick(name: string) {
+    this.selectedCategory.name = name;
+    this.homeService.pushCateogryByUser(this.selectedCategory);
+    this.router.navigate(['category-list']);
+  }
+
+  // // filter the countries based on search input
+  // filterCategory(){
+  //   this.searchCategory = [];
+  //   this.categories = this.homeService.filterCategories(this.countriesOriginal, this.searchText);
+  // }
+  //   
+}

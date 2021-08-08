@@ -1,30 +1,30 @@
-export interface Category{
+export interface Category {
     name: [string];
 
 }
-export interface FirstLetter{
+export interface FirstLetter {
     name: [string];
 
 }
-export interface LetterByUser{
+export interface LetterByUser {
     letter: string;
 
 }
-export interface CocktailName{
+export interface CocktailName {
     name: string;
 }
-export interface SelectedCategory{
+export interface SelectedCategory {
     name: string;
 }
-export interface SelectedCategoryList{
+export interface SelectedCategoryList {
     name: [string];
-  //  img: [string];
+
 }
-export class MyFavorite{
-    name : string;
+export class MyFavorite {
+    name: string;
     img: string;
 
-    constructor(n: string, i: string){
+    constructor(n: string, i: string) {
         this.name = n;
         this.img = i;
     }
