@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { DetailService } from './detail.service';
 import { Detail } from './detail.model';
 import { CocktailName } from '../home/home.model';
+import { StorageService } from '../storage.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -20,8 +22,10 @@ export class DetailPage implements OnInit {
   strCategoryS : string;
   strInstructionsS : string;
   strDrinkThumbS: string;
+  strButton : string;
 
-  constructor(private activatedRoute: ActivatedRoute,private router: Router, private homesService: HomeService, private detailService: DetailService ) { }
+
+  constructor(private activatedRoute: ActivatedRoute,private alertController: AlertController,private router: Router, private storageService: StorageService, private homesService: HomeService, private detailService: DetailService ) { }
 
   ngOnInit() {
     this.details = {
@@ -33,8 +37,10 @@ export class DetailPage implements OnInit {
    
       }
 
+
+
     this.activatedRoute.paramMap.subscribe(paramMap => {
-    //this.strDrinkS = 'mmmm';
+   
       this.cocktailName = this.homesService.getCocktailName();
       this.cacktailNameStr = this.cocktailName.name;
       console.log(this.cocktailName.name);
@@ -60,17 +66,32 @@ export class DetailPage implements OnInit {
         this.strInstructionsS = this.strInstructionsS.replace(/,/g, "")
         this.strDrinkThumbS = this.details.strDrinkThumb.toString();
         this.strDrinkThumbS = this.strDrinkThumbS.replace(/,/g, "")
+
+        this.strButton= "Add to My Favorite";
       });
 
     })
    
-   
-
-    
-
    }
+  
+   addFavorite(){
+  
 
+    this.alertController.create({
+      header: 'Success',
+      message : 'Do you want to add this receipe?',
+      buttons: [{
+        text :'Add to my Favorite',
+        handler : ()=>{
+          this.storageService.addMyFavorite(this.strDrinkS, this.strDrinkS);
+        }
+      },'Cancel']
 
+    }).then(alert => {
+      alert.present();
+    })
+    
+   }
 
   
 }

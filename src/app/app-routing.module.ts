@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'category-list',
     loadChildren: () => import('./category-list/category-list.module').then( m => m.CategoryListPageModule)
   },
+  {
+    path: 'my-favorite',
+    loadChildren: () => import('./my-favorite/my-favorite.module').then( m => m.MyFavoritePageModule)
+  },
 ];
 
 @NgModule({

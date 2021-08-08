@@ -67,6 +67,9 @@ searchByFirstLetter()
   this.letter = "";
   this.router.navigate(['search-letter']);
 }
+clickFavorite(){
+  this.router.navigate(['/my-favorite']); 
+}
 }
 
 

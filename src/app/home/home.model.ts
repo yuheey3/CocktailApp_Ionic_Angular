@@ -20,3 +20,12 @@ export interface SelectedCategoryList{
     name: [string];
   //  img: [string];
 }
+export class MyFavorite{
+    name : string;
+    img: string;
+
+    constructor(n: string, i: string){
+        this.name = n;
+        this.img = i;
+    }
+}
