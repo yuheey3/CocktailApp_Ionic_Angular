@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../home/home.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FirstLetter, LetterByUser } from '../home/home.model';
+import { CocktailName, FirstLetter, LetterByUser } from '../home/home.model';
+import { hostViewClassName } from '@angular/compiler';
 
 @Component({
   selector: 'app-search-letter',
@@ -12,6 +13,7 @@ export class SearchLetterPage implements OnInit {
 
   firstLetters: FirstLetter;
   letterByUser: LetterByUser;
+  cocktailName: CocktailName;
   constructor(private activatedRoute: ActivatedRoute,private router: Router, private homeService: HomeService) { }
 
   ngOnInit() {
@@ -19,6 +21,10 @@ export class SearchLetterPage implements OnInit {
       name: [''],
    
       }
+      this.cocktailName = {
+        name: '',
+     
+        }
 
     this.activatedRoute.paramMap.subscribe(paramMap => {
     this.letterByUser = this.homeService.getLetterByUser();
@@ -29,5 +35,14 @@ export class SearchLetterPage implements OnInit {
         });
 
       }
+
+
+       // on item click update the routing helper and navigate to details page
+    onItemClick(name: string){
+    //this.service.changeRoutingHelper(false);
+    this.cocktailName.name = name;
+    this.homeService.pushCocktailName(this.cocktailName);
+    this.router.navigate(['detail']);
+  }
   
     }

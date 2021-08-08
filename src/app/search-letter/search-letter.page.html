@@ -7,7 +7,7 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let firstLetter of firstLetters.name">
+    <ion-item *ngFor="let firstLetter of firstLetters.name" (click)="onItemClick(firstLetter)">
       <ion-label>
         {{firstLetter}}
       </ion-label>
