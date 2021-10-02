@@ -9,7 +9,9 @@ User can able to search cocktail recipe by name, first letter and category.
 Angular and ionic Storage are used.
 
 
+
 ## Screenshots
+
 
 <img src="https://user-images.githubusercontent.com/55505154/135707949-17b53911-c0ea-41d4-b1f8-bd9c0cf9f1e2.JPG" width="300"><img src="https://user-images.githubusercontent.com/55505154/135707956-8bdc6bb5-3100-4520-88d5-317c289ed749.JPG" width="300">
 
