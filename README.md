@@ -4,6 +4,8 @@ Cocktail App
 
 This app helps people to find cocktail recipe and save to Favorite page.  
 
+User can able to search cocktail recipe by name, first letter and category. 
+
 Angular and ionic Storage are used.
 
 
